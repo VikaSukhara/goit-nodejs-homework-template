@@ -35,13 +35,15 @@ const updateById = async (req, res) => {
 };
 
 const updateStatusContact = async (req, res, next) => {
-
-
   const { contactId } = req.params;
   const { _id: owner } = req.user;
-  const result = await Contact.findByIdAndUpdate({_id: contactId, owner}, req.body, {
-    new: true,
-  });
+  const result = await Contact.findByIdAndUpdate(
+    { _id: contactId, owner },
+    req.body,
+    {
+      new: true,
+    }
+  );
   if (!result) {
     throw HttpError(404, "Not found");
   }
